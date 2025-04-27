@@ -26,5 +26,6 @@ struct EpisodeRowView: View {
             .padding(.horizontal)
             .padding(.vertical, 5)
         }
+        .accessibilityIdentifier(episode.episode)
     }
 }

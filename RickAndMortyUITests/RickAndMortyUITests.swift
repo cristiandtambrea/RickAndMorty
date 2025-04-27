@@ -2,33 +2,31 @@ import XCTest
 
 final class RickAndMortyUITests: XCTestCase {
 
+    private var app: XCUIApplication!
+
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+        app.launch()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app = nil
     }
 
     @MainActor
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testEpisodeListAppears() {
+        XCTAssertTrue(app.navigationBars["Episodes"].exists)
+        let buttonS01E01 = app.buttons["S01E01"]
+        XCTAssertTrue(buttonS01E01.waitForExistence(timeout: 5), "Expected at least one episode to load")
     }
 
     @MainActor
-    func testLaunchPerformance() throws {
-        // This measures how long it takes to launch your application.
-        measure(metrics: [XCTApplicationLaunchMetric()]) {
-            XCUIApplication().launch()
-        }
+    func testEpisodeTapNavigatesToEpisodeDetail() {
+        let buttonS01E01 = app.buttons["S01E01"]
+        XCTAssertTrue(buttonS01E01.waitForExistence(timeout: 5))
+        buttonS01E01.tap()
+        let detailTitle = app.staticTexts["S01E01"]
+        XCTAssertTrue(detailTitle.waitForExistence(timeout: 2), "Tapping an episode should show its detail screen")
     }
 }
