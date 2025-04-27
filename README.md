@@ -1,0 +1,1 @@
+A SwiftUI demo project leveraging the Rick and Morty API to test and showcase SwiftUI functionalities.
