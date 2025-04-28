@@ -27,21 +27,22 @@ A small SwiftUI app built to explore new Swift features and best practices, usin
 ---
 
 ## Project Structure
-
+```
 RickAndMorty/
-├── Common/              # Formatters, View Modifiers, Reusable Views
-├── Feature/             # Feature modules (Character, Episode, ...)
-├── Navigation/          # Coordinator pattern and app navigation
-├── Network/             # Networking layer and API models
-├── Persistence/         # Basic local data persistence
-├── Assets/              # App icons and assets
-├── App Files            # Entry point and app lifecycle
+|-- Common/              # Formatters, View Modifiers, Reusable Views
+|-- Feature/             # Feature modules (Character, Episode, ...)
+|-- Navigation/          # Coordinator pattern and app navigation
+|-- Network/             # Networking layer and API models
+|-- Persistence/         # Basic local data persistence
+|-- Assets/              # App icons and assets
+|-- App Files            # Entry point and app lifecycle
 RickAndMortyTests/       # Unit tests
 RickAndMortyUITests/     # UI tests
+```
 
 ---
 
-##Notes
+## Notes
 
 This project is meant for experimentation and learning. It may not cover all edge cases and is definitely not production-ready.
 
