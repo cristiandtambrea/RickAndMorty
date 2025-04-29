@@ -25,16 +25,6 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             handleAppRefresh(task: task)
         }
         scheduleAppRefresh()
-
-        #if DEBUG
-            Task.detached(priority: .background) { [container = self.modelContainer] in
-                do {
-                    try await PersistenceViewModel.shared.updateEpisodes(context: ModelContext(container))
-                } catch {
-                    print(error)
-                }
-            }
-        #endif
         return true
     }
 
