@@ -30,11 +30,10 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 
     private func handleAppRefresh(task: BGAppRefreshTask) {
         scheduleAppRefresh()
-        let context = ModelContext(modelContainer)
-        let refresh = Task.detached(priority: .background) {
+        let refresh = Task(priority: .background) { [modelContainer] in
             defer { task.setTaskCompleted(success: !Task.isCancelled) }
             do {
-                try await PersistenceViewModel.shared.updateEpisodes(context: context)
+                try await PersistenceViewModel.shared.updateEpisodes(context: ModelContext(modelContainer))
             } catch {
                 task.setTaskCompleted(success: false)
             }
